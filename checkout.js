@@ -1,6 +1,7 @@
 import { Product } from "./product.js"
 import { Cart } from "./cart.js"
 import { OrderInfo } from "./orderinfo.js";
+import { orderConstructor } from "./OrderConstructor.js";
 
 const products = [
     new Product("L001","Laptop", 12000, "", "A Windows 11 Laptop", 10),
@@ -33,7 +34,6 @@ const cartTotal = cart.getTotal();
 console.log(cartItems)
 
 const checkoutTotal = document.querySelector("#checkout-total");
-checkoutTotal.textContent = cartTotal;
 
 function renderCheckout() {
     const checkoutItems = document.getElementById("checkout-items");
@@ -45,22 +45,27 @@ function renderCheckout() {
         checkoutItems.innerHTML = `<p>Your cart is empty.</p>`
         return;
     }
-    
+    const subtotals = [];
     cartItems.forEach(item => {
         const itemElement = document.createElement("div")
-        
+        const subtotal = item.product.price * item.quantity
         itemElement.innerHTML = `
         <h3>${item.product.name}<h3>
         <p>Price: R${item.product.price}</p>
-        <p>Subtotal: R${item.product.price * item.quantity}</p>
+        <p>Subtotal: R${subtotal}</p>
         `;
+        subtotals.push(subtotal)
         checkoutItems.appendChild(itemElement);
     });
+    console.log(subtotals)
+    const total = subtotals.reduce((x, y)=> x+y, 0)
+    checkoutTotal.textContent = total;//render total from subtotals
 }
 
 renderCheckout();
 
 const checkoutForm = document.getElementById("checkout-form");
+const orders = new OrderInfo()
 
 checkoutForm.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -71,14 +76,11 @@ checkoutForm.addEventListener("submit", function(event) {
     const address = document.getElementById("address").value;
 
     const customerInfo = {
-        name: name,
+        name: name, 
         email: email,
         address: address
     }
 
-    const orderInfo = new OrderInfo(customerInfo, cartItems, cartTotal);
-    
-    cart.items.clearCart();
-    
-    console.log(orderInfo)
+    const newOrder = new orderConstructor(customerInfo, cartItems, cartTotal)
+    orders.addOrder(newOrder)
 })

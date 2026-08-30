@@ -28,11 +28,7 @@ export class Cart extends EventTarget {
     }
     /*Ensure cart is source of truth with regards to increse quantity buttons
     as well. Meaning let the method check the cart against products catalog first 
-    and stop executing if quantity is too big, and then disable buttons in UI. So 
-    far I was just disabling buttons just base on my own knowledge of the product stock
-    without letting JavaScript actually check the data I fed it. This would probably be
-    inconvenient with large data where I may not remember how much of a certain product
-    there is*/
+    and stop executing if quantity is too big, and then disable buttons in UI.*/
     increaseQuantity(x) {
         const item = this.items.find(item => item.product.id === x.id);
         if (item && item.quantity < item.product.stock) {

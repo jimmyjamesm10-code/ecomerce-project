@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" th:href="@{\appstyle.css}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product Details</title>
+    </head>
+    <body>
+        <div th:replace="~{fragments/navbar :: navbar}"></div>
+        <div class = "product-details" style="display: none;"></div>
+        <div class ="cart-container"></div>
+        <div class="checkout"></div>
+    </body>
+    <script type = "module" th:src="@{/cart.js}"></script>
+    <script type = "module" th:src="@{/product.js}"></script>
+    <script type = "module" th:src="@{/OrderConstructor.js}"></script>
+    <script type = "module" th:src="@{/productdetails.js}"></script>
+</html>

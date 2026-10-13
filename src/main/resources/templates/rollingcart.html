@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" th:href="@{\appstyle.css}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div th:replace="~{fragments/navbar :: navbar}"></div>
+        <div id = "cart">
+            <button class="checkout-button">Checkout</button>
+        </div>
+        <div id = "total">Total Cost: R0</div>
+        <div class ="cart-container"></div>
+        <div class="checkout"></div>
+    </body>
+    <script type = "module" th:src="@{/product.js}"></script>
+    <script type = "module" th:src="@{/rollingcart.js}"></script>
+    <script type = "module" th:src="@{/cart.js}"></script>
+    <script type = "module" th:src="@{/OrderConstructor.js}"></script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" th:href="@{\appstyle.css}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Checkout</title>
+    </head>
+
+    <body>
+        <div th:replace="~{fragments/navbar :: navbar}"></div>
+        <h1>Checkout</h1>
+        <br><br>
+        <h2>Order Summary</h2>
+        <div id="checkout-items"></div>
+
+        <h2>Total: R<span id="checkout-total">0.00</span></h2>
+
+        <br><br>
+        
+        <h2>Customer Information</h2>
+
+        <form id="checkout-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+            <br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <br><br>
+            <label for="address">Address:</label>
+            <textarea id="address" required></textarea>
+            <br><br>
+            <button type="submit" id="place-order">Place Order</button>
+        </form>
+
+        <script type="module" th:src="@{/checkout.js}"></script>
+        <script type="module" th:src="@{/Inventory.js}"></script>
+    </body>
+</html>

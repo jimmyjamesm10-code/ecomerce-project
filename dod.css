@@ -1,0 +1,70 @@
+body {
+    background-color:white;
+    color: white;
+}
+h1 {
+    font-size: 40pt;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgba(0, 0, 0, 0.815);
+    width: 60%;
+    padding-left: 1cm;
+    display: flexbox;
+    background-color: rgb(255, 255, 255);
+    block-size: 5cm;
+    padding-right: 3cm;
+}
+nav {
+    text-align:right;
+    color: white;
+}
+nav a{
+    color: white;
+}
+nav a:hover {
+    color: lightgray;
+}
+nav a {
+    text-decoration: none;
+    margin: 1px; 
+}
+header a {
+    background-color: black;
+    font-size: 20pt;
+    padding: 0.5cm;
+}
+header {
+    justify-content: space-between;
+    background-color: rgb(74, 58, 85);
+    block-size: 5cm;
+    padding: 0.5cm;
+    display: flexbox;
+    align-items: center;
+}
+div a {
+    text-decoration: none;
+    vertical-align: 1cm;
+}
+
+.logo a {
+    color: white;
+    padding: 0.3cm;
+    font-size: xx-large;
+}
+
+p {
+    font-size: 16pt;
+    padding: 1cm;
+    padding-left: 1cm;
+    width: 50%;
+}
+img {
+    display: block;
+    margin: 0 auto;
+    border-style: solid;
+    border-radius:20cm;
+    width: 10cm;
+    object-fit: cover;
+}
+
+.search-bar {
+}

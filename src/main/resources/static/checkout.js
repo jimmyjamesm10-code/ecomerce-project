@@ -15,6 +15,8 @@ parsedProducts = parsedProducts.map(item =>
 const products = parsedProducts;
 
 
+
+
 cart.items = cart.items
     .map(item => {
         const product = products.find(candidate => candidate.id === item.product.id);
@@ -38,7 +40,10 @@ const cartTotal = cart.getTotal();
 console.log(cartItems)
 
 const checkoutTotal = document.querySelector("#checkout-total");
-const orderButton = document.getElementById("place-order")
+const payButton = document.getElementById("paybutton");
+const orderButton = document.getElementById("place_order");
+const requestUserLogin = document.createElement("div");
+requestUserLogin.classList = "request-user-login";
 
 
 //----------------rendering------------------------------------------
@@ -68,48 +73,81 @@ function renderCheckout() {
     const total = subtotals.reduce((x, y)=> x+y, 0)
     checkoutTotal.textContent = total;//render total from subtotals
 }
-
-renderCheckout();
+window.addEventListener("pageshow", () => {
+    renderCheckout();
+})
 
 //------------------------------------------------------------------
 
 
 const checkoutForm = document.getElementById("checkout-form");
-const orders = new OrderInfo()
+const checkoutDialog = document.getElementById("checkout-dialog");
+const closeCheckoutButton = document.getElementById("close-checkout");
 
+closeCheckoutButton.addEventListener("click", () => checkoutDialog.close());
 
-
-checkoutForm.addEventListener("submit", function(event) {
+orderButton.addEventListener("click", async function(event) {
     event.preventDefault();
+    const newOrder = new orderConstructor(cartItems, cartTotal, "PENDING")
+    orderButton.disabled = true;
 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const address = document.getElementById("address").value;
+    //----------------place order and immediately retrieve its id----------------
+    const response = await fetch("http://localhost:8080/order/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newOrder)
+    }).then(response => {
+        if (!response.ok) {
+            requestUserLogin.textContent = "Please log in before placing order"
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        } 
+        return response.json();
+    })
+    console.log(response.message);
+    console.log(response.orderId);
+    const orderId = response.orderId;
+    //---------------------------------------------------------------------------
 
-    const customerInfo = {
-        name: name, 
-        email: email,
-        address: address
+    //----------------use order id to save order items---------------------------
+    const saveitemsresponse = await fetch(`http://localhost:8080/order/saveorderitems/${orderId}`, {
+        method: "POST",
+        headers: {"content-Type": "application/json"},
+        body: JSON.stringify(newOrder)
+    })
+
+    const body = saveitemsresponse.json();
+    
+    if (!saveitemsresponse.ok) {
+        console.log(body.message);
+        return;
     }
 
-    const newOrder = new orderConstructor(customerInfo, cartItems, cartTotal)
-    /*orders.addOrder(newOrder)
-    newOrder.items.forEach(item => {
-        inventory.updateInventory(item, item.quantity)
-    }) */
-    cart.items = []
-    cart.save()
-    renderCheckout()
-    orderButton.disabled = true;
-    fetch("http://192.168.230.203:8080/order", {
-        method: "POST", 
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newOrder)
-    });
-    newOrder.items.forEach(item =>{
-        const product = products.find(product => product.id === item.product.id)
-        product.updateStock(item.quantity);
+    checkoutDialog.showModal();
+
+    //---------------------------------------------------------------------------
+    
+    //after order is placed listen for payment init submission
+    checkoutForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+        newOrder.items.forEach(item => {
+            const product = products.find(product => product.id === item.product.id)
+            product.updateStock(item.quantity);
+        })
+
+        //----------use retrieved orderid to request payment init-------------------
+        const paystackResponse = await fetch(`http://localhost:8080/payments/initialize/${orderId}`, {
+            method: "POST"
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            cart.items = [];
+            cart.save();
+            payButton.disabled = true;
+            return response.json();
+        })
+
+        window.location.href = await paystackResponse.authorization_url
+
     })
 })

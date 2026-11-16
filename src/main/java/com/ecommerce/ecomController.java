@@ -21,6 +21,11 @@ public class ecomController {
         return "checkout";
     }
 
+    @GetMapping("/callback")
+    public String paymentCallback() {
+        return "callback";
+    }
+
     @GetMapping("/rollingcart")
     public String cart() {
         return "rollingcart";
@@ -31,4 +36,8 @@ public class ecomController {
         return "login";
     }
     
+    @GetMapping("/registration")
+    public String registration() {
+        return "registration";
+    }
 }

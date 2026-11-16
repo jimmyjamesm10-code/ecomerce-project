@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" th:href="@{\appstyle.css}">
+        <link rel="stylesheet" th:href="@{/appstyle.css}">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Checkout</title>
@@ -16,22 +16,25 @@
 
         <h2>Total: R<span id="checkout-total">0.00</span></h2>
 
-        <br><br>
-        
-        <h2>Customer Information</h2>
+        <button id="place_order">Place Order</button>
+        <p id="decline"></p>
 
-        <form id="checkout-form">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" required>
-            <br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
-            <br><br>
-            <label for="address">Address:</label>
-            <textarea id="address" required></textarea>
-            <br><br>
-            <button type="submit" id="place-order">Place Order</button>
-        </form>
+        <dialog id="checkout-dialog" aria-labelledby="checkout-dialog-title">
+            <button type="button" id="close-checkout" aria-label="Close checkout">&times;</button>
+            <h2 id="checkout-dialog-title">Delivery Information</h2>
+            <form id="checkout-form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" required>
+                <br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+                <br><br>
+                <label for="address">Delivery Address:</label>
+                <textarea id="address" required></textarea>
+                <br><br>
+                <button type="submit" id="paybutton">Pay Now</button>
+            </form>
+        </dialog>
 
         <script type="module" th:src="@{/checkout.js}"></script>
         <script type="module" th:src="@{/Inventory.js}"></script>

@@ -1,6 +1,6 @@
 package com.ecommerce;
+import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
@@ -31,7 +31,7 @@ public class ProductRepository {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
-                double price = resultSet.getDouble("price");
+                BigDecimal price = resultSet.getBigDecimal("price");
                 int stock = resultSet.getInt("stock");
                 String category = resultSet.getString("category_name");
                 String image = resultSet.getString("image");
@@ -61,7 +61,7 @@ public class ProductRepository {
                 while (resultSet.next()) {
                     int id = resultSet.getInt("id");
                     String name = resultSet.getString("name");
-                    double price = resultSet.getDouble("price");
+                    BigDecimal price = resultSet.getBigDecimal("price");
                     int stock = resultSet.getInt("stock");
                     int categoryId = resultSet.getInt("category_id");
                     String image = resultSet.getString("image");
@@ -140,13 +140,13 @@ public class ProductRepository {
         return;
     }
 
-    public void saveProductToDatabase(String name, double price, int stock, String category, String image) {
+    public void saveProductToDatabase(String name, BigDecimal price, int stock, String category, String image) {
 
 
         try (
             Connection connection = dataSource.getConnection();
             PreparedStatement statement1 = connection.prepareStatement("SELECT id FROM categories WHERE name = ?");
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO products (name, price, stock, category_id) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO products (name, price, stock, category_id, image) VALUES (?, ?, ?, ?, ?)");
         ) {
             statement1.setString(1, category);
             try (
@@ -155,7 +155,7 @@ public class ProductRepository {
                 while (resultSet.next()) {
                     int categoryId = resultSet.getInt("id");
                     statement.setString(1, name);
-                    statement.setDouble(2, price);
+                    statement.setBigDecimal(2, price);
                     statement.setInt(3, stock);
                     statement.setInt(4, categoryId);
                     statement.setString(5, image);

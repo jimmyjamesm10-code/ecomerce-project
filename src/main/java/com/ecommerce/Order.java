@@ -1,33 +1,33 @@
 package com.ecommerce;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Order {
-    private Users customerInfo;
     private List<OrderItem> items;
-    private double total;
+    private BigDecimal total;
 
-    Order(Users customerInfo, List<OrderItem> items, double total) {
-        this.customerInfo = customerInfo;
+    Order(Users customerInfo, List<OrderItem> items, BigDecimal total) {
         this.items = items;
         this.total = total;
     }
 
     Order() {}
 
-    public void setCustomerInfo(Users customerInfo) {
-        this.customerInfo = customerInfo;
-    }
 
     public void setItems(List<OrderItem> items) {
         this.items = items;
     }  
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
     
     public List<OrderItem> getItems() {
         return items;
+    } 
+
+    public BigDecimal getTotal() {
+        return total;
     }
 }

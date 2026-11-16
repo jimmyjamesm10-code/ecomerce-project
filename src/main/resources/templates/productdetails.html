@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" th:href="@{\appstyle.css}">
+        <link rel="stylesheet" th:href="@{/appstyle.css}">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product Details</title>
@@ -11,6 +11,19 @@
         <div class = "product-details" style="display: none;"></div>
         <div class ="cart-container"></div>
         <div class="checkout"></div>
+        <dialog id="login-dialog" aria-labelledby="login-dialog-title">
+            <button type="button" id="close-login" aria-label="Close login">&times;</button>
+            <h2 id="login-dialog-title">Login</h2>
+            <form id="login_form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" autocomplete="email" required>
+                <br></br>
+                <label for="password">Password:</label>
+                <input id="password" autocomplete="current-password" required>
+                <br></br>
+                <button type="submit" id="login">Login</button>
+            </form>
+        </dialog>
     </body>
     <script type = "module" th:src="@{/cart.js}"></script>
     <script type = "module" th:src="@{/product.js}"></script>

@@ -1,8 +1,8 @@
 export class orderConstructor {
-    constructor(customerInfo, items, total) {
-        this.customerInfo = customerInfo;
+    constructor(items, total, status) {
         this.items = items;
         this.total = total;
+        this.status = status;
         this.orderDate = new Date();
     }
 }

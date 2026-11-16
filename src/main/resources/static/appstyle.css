@@ -1,9 +1,249 @@
 nav {
     text-align:right;
     color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background-color: rgb(0, 0, 0);
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.brandname {
+    color: rgb(231, 231, 231);
+    font-size: 2rem;
+    cursor: pointer;
+    display: inline;
+}
+
+body {
+    background-color: rgb(233, 233, 233);
+    margin: 0;
+}
+
+.login {
+    cursor: pointer;
+}
+
+#login-dialog {
+    width: min(200vw, 32rem);
+    border: 0;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 25%);
+}
+
+#login-dialog::backdrop {
+    background: rgb(0 0 0 / 50%);
+}
+
+#login-form input,
+#login-form textarea {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#close-login {
+    float: right;
+    border: 0;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.product-card {
+    cursor: pointer;
+}
+
+.product-details {
+    margin-left: 1rem;
+}
+
+.product-details button {
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    font: inherit;
+    background: white;
+    color: #1f2937;
+    cursor: pointer;
+    transition: background-color 120ms ease;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.quantity-control button {
+    min-width: 2.75rem;
+}
+
+.quantity-control .product-quantity {
+    cursor: default;
+}
+
+.product-details .add-to-cart {
+    border-color: #2563eb;
+    background: #2563eb;
+    color: white;
+}
+
+.product-details .back-to-products {
+    margin-left: 0.5rem;
+}
+
+.product-details button:not(:disabled):not(.product-quantity):hover {
+    background: #f3f4f6;
+}
+
+.product-details .add-to-cart:not(:disabled):hover {
+    background: #1d4ed8;
+}
+
+.product-details button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
 .product-image {
     width: 50px;
     height:50px;
+}
+
+.empty-button {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    background: white;
+    color: #4b5563;
+    cursor: pointer;
+    margin-top: 1.2rem;
+    margin-left: 10rem;
+}
+
+.shopping-cart {
+    background: #f3f4f6;
+    display: block;
+    width: 27rem;
+    height: 15rem;
+    margin-left: 1rem;
+}
+
+.cart-item-image {
+    display: inline;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.empty-button:hover {
+    color: #b91c1c;
+    border-color: #b91c1c;
+}
+
+.empty-button:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+.remove-button {
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+    border-radius: 0.2rem;
+    border-width: 0.1rem;
+}
+
+.cartitem-info {
+    margin-left: 0.5rem;
+}
+
+.remove-button:hover {
+    color: #b91c1c;
+    border-color: #b91c1c;
+}
+
+.login-failure-message {
+    color: #b91c1c;
+}
+
+#cart {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    display: flex;
+}
+
+.total-card {
+    margin-left: 1rem;
+    margin-top: 2rem;
+}
+
+.checkout {
+    margin-left: 1rem;
+}
+
+.checkout-button:hover {
+    border-color: #2563eb;
+    color: white;
+    background:#f3f4f6
+}
+
+.checkout-button {
+    background: #2563eb;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    border-color: black;
+    border-width: 0.1rem;
+    color: white;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+#checkout-dialog {
+    width: min(200vw, 32rem);
+    border: 0;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 25%);
+}
+
+#checkout-dialog::backdrop {
+    background: rgb(0 0 0 / 55%);
+}
+
+#close-checkout {
+    float: right;
+    border: 0;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#checkout-form input,
+#checkout-form textarea {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.request-user-login {
+    color: #b91c1c;
 }

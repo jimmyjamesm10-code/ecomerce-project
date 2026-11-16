@@ -1,13 +1,16 @@
 package com.ecommerce;
+
+import java.math.BigDecimal;
+
 public class Products {
     private int id;
     private String name;
-    private double price;
+    private BigDecimal price;
     private int stock;
     private String category;
     private String image;
 
-    Products(int id, String name, double price, int stock, String category, String image) {
+    Products(int id, String name, BigDecimal price, int stock, String category, String image) {
         this.id = id;
         this.name = name; 
         this.price = price;
@@ -26,7 +29,7 @@ public class Products {
         return name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -50,7 +53,7 @@ public class Products {
         this.name = name;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

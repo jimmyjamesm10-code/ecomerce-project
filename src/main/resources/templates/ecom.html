@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <link rel="stylesheet" th:href="@{appstyle.css}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/appstyle.css}">
     </head>
     <body>
         <div th:replace="~{fragments/navbar :: navbar}"></div>
         <div class = "products">Products</div>
+
+        <dialog id="login-dialog" aria-labelledby="login-dialog-title">
+            <button type="button" id="close-login" aria-label="Close login">&times;</button>
+            <h2 id="login-dialog-title">Login</h2>
+            <form id="login_form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" autocomplete="email" required>
+                <br></br>
+                <label for="password">Password:</label>
+                <input id="password" autocomplete="current-password" required>
+                <br></br>
+                <button type="submit" id="login">Login</button>
+            </form>
+        </dialog>
+
     </body>
     <script type = "module" th:src="@{/product.js}"></script>
     <script type = "module" th:src="@{/app.js}"></script>
     <script type = "module" th:src="@{/cart.js}"></script>
-    <script type = "module" th:src="@{OrderConstructor.js}"></script>
+    <script type = "module" th:src="@{/OrderConstructor.js}"></script>
 </html>

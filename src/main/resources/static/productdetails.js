@@ -1,6 +1,41 @@
 import { Product } from "./product.js"
 import { Cart } from "./cart.js"
 
+const loginnav = document.querySelector(".login")
+const logindialog = document.getElementById("login-dialog")
+loginnav.addEventListener("click", () => {
+    logindialog.showModal();
+})
+
+const loginButton = document.getElementById("login");
+const loginForm = document.getElementById("login_form");
+const loginFailureMessage = document.createElement("div");
+loginFailureMessage.classList = "login-failure-message"
+loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const loginInfo = {email:  email, password: password}
+
+    
+    const response = await fetch("http://localhost:8080/loginrequest", {
+        method: "POST", 
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(loginInfo)
+    })
+
+    const body = await response.json();
+
+    if (!response.ok) {
+        console.error(`HTTP error! Status: ${response.status}: ${body.message}`);
+        loginFailureMessage.textContent = body.message;
+        logindialog.appendChild(loginFailureMessage)
+        return;    
+    }
+    console.log(response.status, body.message)
+    window.location.href = "ecom"; 
+})
 
 let parsedProduct = JSON.parse(localStorage.getItem("selected_product"));
 

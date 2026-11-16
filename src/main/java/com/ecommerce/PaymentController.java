@@ -105,32 +105,43 @@ public class PaymentController {
 
         //----------------everything-checks-out-update-DB-------------------
 
-        String statusupdateSql = """
-            BEGIN;
+        try (Connection connection = dataSource.getConnection()) {
+            connection.setAutoCommit(false);
 
-            UPDATE orders
-            SET status = 'PAID'
-            WHERE id = ? AND paystack_reference = ? AND status = 'PENDING';
+            try {
+                try (PreparedStatement statement = connection.prepareStatement("""
+                        UPDATE orders
+                        SET status = 'PAID'
+                        WHERE id = ? AND paystack_reference = ? AND status = 'PENDING'
+                        """)) {
+                    statement.setInt(1, orderId);
+                    statement.setString(2, reference);
 
-            UPDATE order_items
-            SET status = 'PAID'
-            WHERE order_id = ? AND status = 'PENDING'
+                    if (statement.executeUpdate() == 0) {
+                        connection.rollback();
+                        return ResponseEntity.status(HttpStatus.CONFLICT)
+                                .body("Order was not updated. Check current status");
+                    }
+                }
 
-            ROLLBACK
-            """;
-        try (
-            Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(statusupdateSql);
-        ) {
-            preparedStatement.setInt(1, orderId);
-            preparedStatement.setString(2, reference);
-            int updateRows = preparedStatement.executeUpdate();
-            if (updateRows == 0) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("Order was not updated. Check current status");
+                try (PreparedStatement statement = connection.prepareStatement("""
+                        UPDATE order_items
+                        SET status = 'PAID'
+                        WHERE order_id = ? AND status = 'PENDING'
+                        """)) {
+                    statement.setInt(1, orderId);
+                    statement.executeUpdate();
+                }
+
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw e;
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            return ResponseEntity.internalServerError().body("could not update order status");
+            return ResponseEntity.internalServerError()
+                    .body("Could not update order status");
         }
 
         //----------------update-inventory-after-successful-verification-------------

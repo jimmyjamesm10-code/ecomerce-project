@@ -33,8 +33,8 @@ public class OrderController {
     }
 
     @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping("/saveorderitems/{orderid}")
-    public ResponseEntity<?> SaveOrderItems(@PathVariable Integer orderId, @RequestBody Order order, HttpSession session) {
+    @PostMapping("/saveorderitems/{orderId}")
+    public ResponseEntity<?> saveOrderItems(@PathVariable Integer orderId, @RequestBody Order order, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userid");
         List<OrderItem> orderItems = order.getItems();
         for (OrderItem item : orderItems) {
@@ -47,7 +47,7 @@ public class OrderController {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                     """
                     INSERT INTO order_items (order_id, product_id, quantity, price, user_id, status)
-                    VALUES (?, ?, ?, ?, ?, PENDING)    
+                    VALUES (?, ?, ?, ?, ?, 'PENDING')    
                     """
                 );
             ) {
@@ -64,7 +64,7 @@ public class OrderController {
                 headers.setContentType(MediaType.APPLICATION_JSON);
                 return ResponseEntity.internalServerError().headers(headers).body(Map.of("message", e.getMessage()));
             }
-        };
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity.status(200).headers(headers).body(Map.of("message", "orderItems saved"));
@@ -73,7 +73,7 @@ public class OrderController {
 
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/save")
-    public ResponseEntity<?> Order(@RequestBody Order order, HttpSession session) throws SQLException {
+    public ResponseEntity<?> order(@RequestBody Order order, HttpSession session) throws SQLException {
         Integer userId = (Integer) session.getAttribute("userid");
         session.setAttribute("order", order);
         System.out.println(userId);

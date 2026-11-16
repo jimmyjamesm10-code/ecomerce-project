@@ -18,7 +18,7 @@ Install the following:
 
 ### 1. Clone the repository
 
-git clone https://github.com/jimmyjames10-code/ecommerce-project.git
+git clone https://github.com/jimmyjamesm10-code/ecommerce-project.git
 
 ### 2. Configure the database
 

@@ -1,40 +1,42 @@
 import { Product } from "./product.js"
 
-const loginnav = document.querySelector(".login")
-const logindialog = document.getElementById("login-dialog")
-loginnav.addEventListener("click", () => {
-    logindialog.showModal();
-})
-
-const loginButton = document.getElementById("login");
+const loginNav = document.querySelector(".login");
+const loginDialog = document.getElementById("login-dialog");
 const loginForm = document.getElementById("login_form");
-const loginFailureMessage = document.createElement("div");
-loginFailureMessage.classList = "login-failure-message"
+const loginError = document.getElementById("login-error");
+
+
+loginNav.addEventListener("click", () => loginDialog.showModal());
+document.getElementById("close-login").addEventListener("click", () => loginDialog.close());
+
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+    loginError.textContent = "";
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const loginInfo = {email:  email, password: password}
+    const loginInfo = {
+        email: document.getElementById("login-email").value,
+        password: document.getElementById("login-password").value
+    };
 
-    
-    const response = await fetch("http://localhost:8080/loginrequest", {
-        method: "POST", 
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(loginInfo)
-    })
+    try {
+        const response = await fetch("http://localhost:8080/loginrequest", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(loginInfo)
+        });
+        const body = await response.json();
 
-    const body = await response.json();
+        if (!response.ok) {
+            loginError.textContent = body.message || "Login failed. Please try again.";
+            return;
+        }
 
-    if (!response.ok) {
-        console.error(`HTTP error! Status: ${response.status}: ${body.message}`);
-        loginFailureMessage.textContent = body.message;
-        logindialog.appendChild(loginFailureMessage)
-        return;    
+        window.location.reload();
+    } catch (error) {
+        console.error("Login request failed:", error);
+        loginError.textContent = "Unable to log in. Please try again.";
     }
-    console.log(response.status, body.message)
-    window.location.href = "ecom"; 
-})
+});
 
 async function getProducts() {
     const response = await fetch("http://localhost:8080/products/getall");

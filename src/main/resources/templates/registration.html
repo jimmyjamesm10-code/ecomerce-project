@@ -5,25 +5,45 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body class="registration-page">
         <div th:replace="~{fragments/navbar :: navbar}"></div>
-        <h2>Register</h2>
 
-        <form id="registration_form">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" required>
-            <br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
-            <br></br>
-            <label for="address">Address:</label>
-            <textarea id="address" required></textarea>
-            <br></br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" autocomplete="new-password" required>
-            <button type="submit" id="register">Register</button>
-        </form>
+        <div class="regform-container">
+            <h2>Register</h2>
+            <form id="registration_form">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+                <br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+                <br></br>
+                <label for="address">Address:</label>
+                <textarea id="address" required></textarea>
+                <br></br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" autocomplete="new-password" required>
+                <br></br>
+                <p id="registration-error" class="login-failure" role="alert"></p>
+                <button type="submit" id="register-button">Register</button>
+            </form>
+        </div>
+
+        <dialog id="login-dialog" aria-labelledby="login-dialog-title">
+            <button type="button" id="close-login" aria-label="Close login">&times;</button>
+            <h2 id="login-dialog-title">Login</h2>
+            <form id="login_form">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" autocomplete="email" required>
+                <br><br>
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" autocomplete="current-password" required>
+                <br><br>
+                <p id="login-error" class="login-failure-message" role="alert"></p>
+                <button id="login-button" type="submit">Login</button>
+            </form>
+        </dialog>
 
         <script type="module" th:src="@{/registration.js}"></script> 
+        <script type = "module" th:src="@{/rollingcart.js}"></script>
     </body>
 </html>

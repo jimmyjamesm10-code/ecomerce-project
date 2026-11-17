@@ -25,17 +25,18 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/registration")
-    public ResponseEntity<String> saveUser(@RequestBody Users user) {
+    public ResponseEntity<Map<String, String>> saveUser(@RequestBody Users user) {
         try {
             Map<String, Object> userSaved = usersRepository.saveNewUser(user.getName(), user.getEmail(), user.getAddress(), user.getPassword());
             String message = (String) userSaved.get("message");
             if (Boolean.TRUE.equals(userSaved.get("status"))) {
-                return ResponseEntity.status(HttpStatus.CREATED).body(message);
+                return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("message", message));
             } else {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("message", message));
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Registration failed");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(Map.of("message", "Registration failed"));
         } 
     }
 

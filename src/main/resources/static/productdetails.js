@@ -1,41 +1,43 @@
 import { Product } from "./product.js"
 import { Cart } from "./cart.js"
 
-const loginnav = document.querySelector(".login")
-const logindialog = document.getElementById("login-dialog")
-loginnav.addEventListener("click", () => {
-    logindialog.showModal();
-})
-
-const loginButton = document.getElementById("login");
+const loginNav = document.querySelector(".login");
+const loginDialog = document.getElementById("login-dialog");
 const loginForm = document.getElementById("login_form");
-const loginFailureMessage = document.createElement("div");
-loginFailureMessage.classList = "login-failure-message"
+const loginError = document.getElementById("login-error");
+const navCartText = document.querySelector(".nav-links .nav-cart-text");
+
+loginNav.addEventListener("click", () => loginDialog.showModal());
+document.getElementById("close-login").addEventListener("click", () => loginDialog.close());
+
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+    loginError.textContent = "";
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const loginInfo = {email:  email, password: password}
+    const loginInfo = {
+        email: document.getElementById("login-email").value,
+        password: document.getElementById("login-password").value
+    };
 
-    
-    const response = await fetch("http://localhost:8080/loginrequest", {
-        method: "POST", 
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(loginInfo)
-    })
+    try {
+        const response = await fetch("http://localhost:8080/loginrequest", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(loginInfo)
+        });
+        const body = await response.json();
 
-    const body = await response.json();
+        if (!response.ok) {
+            loginError.textContent = body.message || "Login failed. Please try again.";
+            return;
+        }
 
-    if (!response.ok) {
-        console.error(`HTTP error! Status: ${response.status}: ${body.message}`);
-        loginFailureMessage.textContent = body.message;
-        logindialog.appendChild(loginFailureMessage)
-        return;    
+        window.location.reload();
+    } catch (error) {
+        console.error("Login request failed:", error);
+        loginError.textContent = "Unable to log in. Please try again.";
     }
-    console.log(response.status, body.message)
-    window.location.href = "ecom"; 
-})
+});
 
 let parsedProduct = JSON.parse(localStorage.getItem("selected_product"));
 
@@ -44,6 +46,10 @@ parsedProduct = new Product(parsedProduct.id, parsedProduct.name, parsedProduct.
 const productToRender = parsedProduct;
 
 const cart = new Cart();
+
+cart.addEventListener("change", () => {
+    navCartText.style.color = cart.items.length > 0 ? "aqua" : "";
+});
 
 window.addEventListener("pageshow", () => {
     renderProductDetails(productToRender)
@@ -59,7 +65,7 @@ function renderProductDetails(product) {
     const availableStock = product.stock - cartQuantity
 
     container.innerHTML = ` 
-    <img src="${product.image}" alt="${product.name}">
+    <img class="product-details-image" src="${product.image}" alt="${product.name}">
     <h2>${product.name}</h2>
     <p>R${product.price}</p>
     <p>${availableStock>0 ? `In Stock: ${availableStock} Units `: "Out of stock"}</p>
@@ -69,14 +75,19 @@ function renderProductDetails(product) {
     <button class="product-quantity">1</button>
     <button class="increase-quantity">+</button>
     </div>
-    <button class="add-to-cart">Add to Cart</button>
+    <button class="add-to-cart"></button>
     <button class="back-to-products">Back to Products</button>
     `;
 
+    
     const quantityDisplay = container.querySelector(".product-quantity");
     const decreseButton = container.querySelector(".decrease-quantity");
     const increaseButton = container.querySelector(".increase-quantity")
     const totalDisplay = container.querySelector(".total-display");
+    const productDetailsImg = container.querySelector(".product-details-image");
+    productDetailsImg.style.cssText = `width: 20rem; 
+                                       height: 20rem; 
+                                       margin-top: 1rem;`
     let quantity = 1;
 
     const updateQuantityControls = () => {
@@ -112,7 +123,8 @@ function renderProductDetails(product) {
         increaseButton.disabled = false;
     })
 
-    const AddButton = document.querySelector(".add-to-cart")
+    const AddButton = document.querySelector(".add-to-cart");
+    AddButton.textContent = "Add To Cart";
     if (availableStock <= 0) {
         AddButton.disabled = true;
         AddButton.textContent = "Out of Stock";
@@ -120,6 +132,7 @@ function renderProductDetails(product) {
 
     
     AddButton.addEventListener("click", () => {
+        AddButton.textContent = "Go To Cart";
         const currentCartItem = cart.items.find(item => item.product.id === product.id);
         const currentCartQuantity = currentCartItem ? currentCartItem.quantity : 0;
         const remainingStock = product.stock - currentCartQuantity;
@@ -131,7 +144,6 @@ function renderProductDetails(product) {
         cart.addItem(product, quantity);
         console.log(remainingStock)
         renderProductDetails(product)
-        AddButton.textContent = "Added to Cart ✔";
     })
 
     const BackButton = document.querySelector(".back-to-products");

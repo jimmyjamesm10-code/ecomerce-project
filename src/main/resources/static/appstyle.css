@@ -143,10 +143,12 @@ body {
 
 .shopping-cart {
     background: #f3f4f6;
-    display: block;
-    width: 27rem;
-    height: 15rem;
+    width: min(27rem, calc(100% - 2rem));
+    min-height: 15rem;
+    height: auto;
     margin-left: 1rem;
+    box-sizing: border-box;
+    padding-bottom: 1rem;
 }
 
 .cart-item-image {
@@ -190,11 +192,38 @@ body {
     margin-left: 1rem;
     margin-top: 1rem;
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 .total-card {
     margin-left: 1rem;
     margin-top: 2rem;
+}
+
+h1.checkout-title {
+    color: #083472;
+}
+
+h3.checkout-product-name {
+    color: #530404;
+}
+
+.total-card,
+h2.checkout-total {
+    color: rgb(5, 107, 2);
+}
+
+.checkout-container {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 20rem;
+    height: 30rem;
+    background: white;
+    padding: 1rem;
 }
 
 .checkout {
@@ -246,4 +275,58 @@ body {
 
 .request-user-login {
     color: #b91c1c;
+}
+
+.account-exists {
+    background:#ffffff; 
+    border: 0rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-left: 4rem;
+}
+
+.registration_form {
+    margin-left: 2rem;
+}
+
+body.registration-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.registration-page .regform-container {
+    background: white;
+    box-sizing: border-box;
+    width: min(35rem, calc(100% - 2rem));
+    padding: 2rem;
+    margin: auto;
+}
+
+
+#paybutton,
+#register-button,
+#place_order,
+#login,
+#login_form button {
+    background: #2563eb;
+    padding: 0.5rem 2rem;
+    border: 1px solid #2563eb;
+    border-radius: 0.2rem;
+    color: white;
+    cursor: pointer;
+}
+
+
+#register-button:hover,
+#place_order:not(:disabled):hover,
+#login:hover,
+#login_form button:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+#place_order:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }

@@ -60,16 +60,16 @@ public class UsersRepository {
         } catch (SQLException e) {
             if ("23505".equals(e.getSQLState())) {
                 System.out.println("email already exists");
-                Map.of("status", false, "message", "email already exists");
+                return Map.of("status", false, "message", "Email already exists.");
             } else if ("42000".equals(e.getSQLState())) {
                 System.out.println("user account could not be created");
-                return Map.of("status", false, "message", "user account could not be created");
+                return Map.of("status", false, "message", "User account could not be created. Please try again.");
             } else {
                 System.err.println("Database error:" + e.getMessage());
-                return Map.of("status", false, "message", "user account could not be created");
+                return Map.of("status", false, "message", "User account could not be created. Please try again.");
             }
         }
-        return Map.of("status" , true, "message", "user account created successfully");
+        return Map.of("status" , true, "message", "User account created successfully");
     }
 
     public Integer getUserId(Users user) {

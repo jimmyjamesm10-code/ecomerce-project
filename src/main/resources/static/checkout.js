@@ -3,6 +3,44 @@ import { Cart } from "./cart.js"
 import { OrderInfo } from "./orderinfo.js";
 import { orderConstructor } from "./OrderConstructor.js";
 
+const loginNav = document.querySelector(".login");
+const loginDialog = document.getElementById("login-dialog");
+const loginForm = document.getElementById("login_form");
+const loginError = document.getElementById("login-error");
+const checkoutContainer = document.querySelector(".checkout-container");
+checkoutContainer.style.cssText = "flex-wrap: wrap; gap: 1rem"
+
+loginNav.addEventListener("click", () => loginDialog.showModal());
+document.getElementById("close-login").addEventListener("click", () => loginDialog.close());
+
+loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    loginError.textContent = "";
+
+    const loginInfo = {
+        email: document.getElementById("login-email").value,
+        password: document.getElementById("login-password").value
+    };
+
+    try {
+        const response = await fetch("http://localhost:8080/loginrequest", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(loginInfo)
+        });
+        const body = await response.json();
+
+        if (!response.ok) {
+            loginError.textContent = body.message || "Login failed. Please try again.";
+            return;
+        }
+
+        window.location.reload();
+    } catch (error) {
+        console.error("Login request failed:", error);
+        loginError.textContent = "Unable to log in. Please try again.";
+    }
+});
 
 const cart = new Cart();
 
@@ -42,8 +80,9 @@ console.log(cartItems)
 const checkoutTotal = document.querySelector("#checkout-total");
 const payButton = document.getElementById("paybutton");
 const orderButton = document.getElementById("place_order");
-const requestUserLogin = document.createElement("div");
+const requestUserLogin = document.createElement("p");
 requestUserLogin.classList = "request-user-login";
+requestUserLogin.role = "alert";
 
 
 //----------------rendering------------------------------------------
@@ -62,7 +101,7 @@ function renderCheckout() {
         const itemElement = document.createElement("div")
         const subtotal = item.product.price * item.quantity
         itemElement.innerHTML = `
-        <h3>${item.product.name}<h3>
+        <h3 class="checkout-product-name">${item.product.name}<h3>
         <p>Price: R${item.product.price}</p>
         <p>Subtotal: R${subtotal}</p>
         `;
@@ -99,6 +138,7 @@ orderButton.addEventListener("click", async function(event) {
     }).then(response => {
         if (!response.ok) {
             requestUserLogin.textContent = "Please log in before placing order"
+            checkoutContainer.appendChild(requestUserLogin);
             throw new Error(`HTTP error! Status: ${response.status}`)
         } 
         return response.json();

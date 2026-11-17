@@ -1,44 +1,47 @@
 import { Product } from "./product.js"
 import { Cart } from "./cart.js"
 
-const loginnav = document.querySelector(".login")
-const logindialog = document.getElementById("login-dialog")
-loginnav.addEventListener("click", () => {
-    logindialog.showModal();
-})
-
-const loginButton = document.getElementById("login");
+const loginNav = document.querySelector(".login");
+const loginDialog = document.getElementById("login-dialog");
 const loginForm = document.getElementById("login_form");
-const loginFailureMessage = document.createElement("div");
-loginFailureMessage.classList = "login-failure-message"
+const loginError = document.getElementById("login-error");
+const navCartText = document.querySelector(".nav-links .nav-cart-text");
+
+loginNav.addEventListener("click", () => loginDialog.showModal());
+document.getElementById("close-login").addEventListener("click", () => loginDialog.close());
+
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+    loginError.textContent = "";
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const loginInfo = {email:  email, password: password}
+    const loginInfo = {
+        email: document.getElementById("login-email").value,
+        password: document.getElementById("login-password").value
+    };
 
-    
-    const response = await fetch("http://localhost:8080/loginrequest", {
-        method: "POST", 
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(loginInfo)
-    })
+    try {
+        const response = await fetch("http://localhost:8080/loginrequest", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(loginInfo)
+        });
+        const body = await response.json();
 
-    const body = await response.json();
+        if (!response.ok) {
+            loginError.textContent = body.message || "Login failed. Please try again.";
+            return;
+        }
 
-    if (!response.ok) {
-        console.error(`HTTP error! Status: ${response.status}: ${body.message}`);
-        loginFailureMessage.textContent = body.message;
-        logindialog.appendChild(loginFailureMessage)
-        return;    
+        window.location.reload();
+    } catch (error) {
+        console.error("Login request failed:", error);
+        loginError.textContent = "Unable to log in. Please try again.";
     }
-    console.log(response.status, body.message)
-    window.location.href = "ecom"; 
-})
+});
 
 
 const cart = new Cart(); //load cart
+
 
 
 //-----------------parse products and fix them------------------------------------
@@ -69,6 +72,15 @@ cart.save();
 
 
 //--------------------render fixed cart items--------------------------------------------------
+
+if (cart.items.length !== 0) {
+    navCartText.style.color = "aqua";
+}
+
+cart.addEventListener("change", () => {
+    navCartText.style.color = cart.items.length > 0 ? "aqua" : "";
+})
+
 const cartElement = document.getElementById("cart");
 const totalCard = document.querySelector(".total-card");
 const checkout = document.querySelector(".checkout");
@@ -76,7 +88,6 @@ function renderCart() {
     cartElement.innerHTML = "";
     totalCard.innerHTML = "";
     checkout.innerHTML = "";
-
 
     const checkoutButton = document.createElement("button");
     checkoutButton.classList = "checkout-button"
@@ -133,8 +144,12 @@ function renderCart() {
 
     const emptyCartText = document.createElement("div")
     emptyCartText.textContent = "Your cart is empty"
-    if (cartElement == "") {
+    emptyCartText.style.cssText = "margin-left: 6rem; margin-top: 5rem; font-size: 2rem"
+
+    if (cartElement.innerHTML == "") {
         cartElement.appendChild(emptyCartText);
+        checkoutButton.disabled = true;
+        checkoutButton.style.cursor = "not-allowed";
     }
     
     checkoutButton.addEventListener("click", () => {
@@ -144,6 +159,7 @@ function renderCart() {
 renderCart();
 
 //listen for event dispatched after every cart method nad re-render cart.
+
 cart.addEventListener("change", renderCart)
 
 //--------------------------------------------------------------------------------

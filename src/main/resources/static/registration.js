@@ -20,7 +20,7 @@ loginForm.addEventListener("submit", async (event) => {
     };
 
     try {
-        const response = await fetch("http://localhost:8080/loginrequest", {
+        const response = await fetch("/loginrequest", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(loginInfo)
@@ -59,7 +59,7 @@ registrationForm.addEventListener("submit", async (event) => {
     const userInfo = new UserInfo(name, email, address, password);
     
     try {
-        const response = await fetch("http://localhost:8080/registration", {
+        const response = await fetch("/registration", {
             method: "POST", 
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userInfo)

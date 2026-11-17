@@ -23,7 +23,7 @@ loginForm.addEventListener("submit", async (event) => {
     };
 
     try {
-        const response = await fetch("http://localhost:8080/loginrequest", {
+        const response = await fetch("/loginrequest", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(loginInfo)
@@ -131,7 +131,7 @@ orderButton.addEventListener("click", async function(event) {
     orderButton.disabled = true;
 
     //----------------place order and immediately retrieve its id----------------
-    const response = await fetch("http://localhost:8080/order/save", {
+    const response = await fetch("/order/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newOrder)
@@ -149,7 +149,7 @@ orderButton.addEventListener("click", async function(event) {
     //---------------------------------------------------------------------------
 
     //----------------use order id to save order items---------------------------
-    const saveitemsresponse = await fetch(`http://localhost:8080/order/saveorderitems/${orderId}`, {
+    const saveitemsresponse = await fetch(`/order/saveorderitems/${orderId}`, {
         method: "POST",
         headers: {"content-Type": "application/json"},
         body: JSON.stringify(newOrder)
@@ -175,7 +175,7 @@ orderButton.addEventListener("click", async function(event) {
         })
 
         //----------use retrieved orderid to request payment init-------------------
-        const paystackResponse = await fetch(`http://localhost:8080/payments/initialize/${orderId}`, {
+        const paystackResponse = await fetch(`/payments/initialize/${orderId}`, {
             method: "POST"
         }).then(response => {
             if (!response.ok) {

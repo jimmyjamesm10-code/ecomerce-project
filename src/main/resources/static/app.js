@@ -19,7 +19,7 @@ loginForm.addEventListener("submit", async (event) => {
     };
 
     try {
-        const response = await fetch("http://localhost:8080/loginrequest", {
+        const response = await fetch("/loginrequest", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(loginInfo)
@@ -39,7 +39,7 @@ loginForm.addEventListener("submit", async (event) => {
 });
 
 async function getProducts() {
-    const response = await fetch("http://localhost:8080/products/getall");
+    const response = await fetch("/products/getall");
     const products = await response.json();
     return products;
 }

@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 
-@CrossOrigin(origins = "http://localhost:8080")
+
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -32,7 +32,7 @@ public class OrderController {
         this.dataSource = dataSource;
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+   
     @PostMapping("/saveorderitems/{orderId}")
     public ResponseEntity<?> saveOrderItems(@PathVariable Integer orderId, @RequestBody Order order, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userid");
@@ -71,7 +71,7 @@ public class OrderController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    
     @PostMapping("/save")
     public ResponseEntity<?> order(@RequestBody Order order, HttpSession session) throws SQLException {
         Integer userId = (Integer) session.getAttribute("userid");

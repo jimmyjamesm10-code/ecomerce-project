@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 
-@CrossOrigin(origins = "http://localhost:8080")
+
 @RestController 
 @RequestMapping("/products")
 public class ProductController {
@@ -25,7 +25,7 @@ public class ProductController {
         return productRepository.getAllProducts();
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+
     @PostMapping("/update")
     public void Order(@RequestBody Order order) {
         List<OrderItem> orderItems= order.getItems();

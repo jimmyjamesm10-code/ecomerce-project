@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@CrossOrigin(origins = "http://localhost:8080")
+
 @RestController 
 public class UserController {
 
@@ -23,7 +23,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/registration")
     public ResponseEntity<Map<String, String>> saveUser(@RequestBody Users user) {
         try {
@@ -40,7 +39,6 @@ public class UserController {
         } 
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/loginrequest")
     public ResponseEntity<?> login(@RequestBody UserLoginInfo loginRequest, HttpSession session) throws SQLException {
         Users user = usersRepository.getUserByEmail(loginRequest.getEmail());

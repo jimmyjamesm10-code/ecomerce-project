@@ -408,6 +408,16 @@ body.registration-page {
         border-bottom: 1px solid rgb(70, 70, 70);
     }
 
+    .nav-links .nav-cart-text {
+        width: auto;
+        padding: 0;
+        border: 0;
+        text-align: right;
+        position: absolute;
+        top: 1.25rem;
+        right: 1rem;
+    }
+
     .nav-cart-text {
         display: block;
         position: absolute;

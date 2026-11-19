@@ -344,7 +344,6 @@ body.registration-page {
 
     nav {
         position: relative;
-        flex-wrap: wrap;
         justify-content: flex-start;
         gap: 1rem;
         padding: 1rem;
@@ -390,6 +389,9 @@ body.registration-page {
 
     .nav-cart-text {
         display: flex;
+    }
+
+    .cart-text {
         align-items: flex-end;
     }
 

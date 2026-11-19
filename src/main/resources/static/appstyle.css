@@ -403,7 +403,7 @@ body.registration-page {
     .nav-links a {
         width: 100%;
         box-sizing: border-box;
-        padding: 0.75rem 0;
+        padding: 0 0.75rem;
         border-bottom: 1px solid rgb(70, 70, 70);
     }
 

@@ -347,6 +347,10 @@ body.registration-page {
         padding: 1rem;
     }
 
+    body {
+        background: #d692cb;
+    }
+
     .mobile-menu-toggle {
         display: block;
         position: absolute;

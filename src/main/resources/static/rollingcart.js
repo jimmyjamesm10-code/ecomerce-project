@@ -5,7 +5,7 @@ const loginNav = document.querySelector(".login");
 const loginDialog = document.getElementById("login-dialog");
 const loginForm = document.getElementById("login_form");
 const loginError = document.getElementById("login-error");
-const navCartText = document.querySelector(".nav-links .nav-cart-text");
+const navCartText = document.querySelector(".cart-links .nav-cart-text");
 
 loginNav.addEventListener("click", () => loginDialog.showModal());
 document.getElementById("close-login").addEventListener("click", () => loginDialog.close());

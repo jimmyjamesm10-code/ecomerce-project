@@ -269,6 +269,8 @@ h2.checkout-total {
     cursor: pointer;
 }
 
+#registration_form,
+#login_form,
 #checkout-form input,
 #checkout-form textarea {
     box-sizing: border-box;

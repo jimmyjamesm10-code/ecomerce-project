@@ -41,6 +41,7 @@ body {
 
 .login {
     cursor: pointer;
+    font-size: 1.3rem
 }
 
 #login-dialog {
@@ -102,6 +103,7 @@ body {
     font-size: 1rem;
 }
 
+
 #login_form {
     font-size: 1rem;
 }
@@ -110,7 +112,7 @@ body {
     float: right;
     border: 0;
     background: transparent;
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
 }
 
@@ -302,7 +304,7 @@ h2.checkout-total {
     padding-right: 2rem;
 }
 
-
+#login-dialog,
 #checkout-dialog {
     width: min(200vw, 32rem);
     border: 0;
@@ -334,6 +336,13 @@ h2.checkout-total {
     height: 2rem
 }
 
+#registration_form input,
+#registration_form textarea  {
+    box-sizing: border-box;
+    width: 100%;
+    height: 2.3rem
+}
+
 .request-user-login {
     color: #b91c1c;
 }
@@ -348,7 +357,7 @@ h2.checkout-total {
 
 #registration_form {
     margin-left: 2rem;
-    font-size: 1.5rem
+    font-size: 1rem
 }
 
 body .registration-page {

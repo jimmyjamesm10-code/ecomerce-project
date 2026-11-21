@@ -48,7 +48,7 @@ const productToRender = parsedProduct;
 const cart = new Cart();
 
 cart.addEventListener("change", () => {
-    navCartText.style.color = cart.items.length > 0 ? "pink" : "";
+    navCartText.style.color = cart.items.length > 0 ? "gold" : "";
 });
 
 window.addEventListener("pageshow", () => {
@@ -85,8 +85,8 @@ function renderProductDetails(product) {
     const increaseButton = container.querySelector(".increase-quantity")
     const totalDisplay = container.querySelector(".total-display");
     const productDetailsImg = container.querySelector(".product-details-image");
-    productDetailsImg.style.cssText = `width: 30rem; 
-                                       height: 25rem; 
+    productDetailsImg.style.cssText = `margin-right:4%; 
+                                       height: 20rem; 
                                        margin-top: 1rem;`
     let quantity = 1;
 

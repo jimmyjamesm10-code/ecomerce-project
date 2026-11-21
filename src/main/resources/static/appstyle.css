@@ -487,4 +487,14 @@ body.registration-page {
         font-size: 1.3rem;
     }
 
+    .search-button {
+        border-radius: 0.1rem;
+        padding: 0.5rem;
+        background-color:transparent;
+        margin-left: 0.5rem;
+        font-size: 1.3rem;
+        cursor: pointer;
+        margin-right: 5%;
+    }
+
 }

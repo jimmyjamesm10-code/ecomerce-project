@@ -35,7 +35,7 @@ nav a {
 }
 
 body {
-    background-color: rgb(255, 255, 255, 0.774);
+    background-color: rgba(255, 255, 255, 0.699);
     margin: 0;
 }
 
@@ -474,6 +474,19 @@ body.registration-page {
         position: absolute;
         top: 1.25rem;
         right: 1rem;
+    }
+
+    #search-form input,
+    #search-form textarea {
+        width: 35rem;
+        box-sizing: border-box;
+        border: 1px solid #7E2A3D;
+        border-radius: 0.25rem;
+        background-color:#c5b5b97e;
+        color: rgb(34, 33, 33);
+        height: 2.5rem;
+        margin-left: 25%;
+        font-size: 1.3rem;
     }
 
 }

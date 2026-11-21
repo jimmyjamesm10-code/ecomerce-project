@@ -119,8 +119,6 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1rem;
     padding: 1rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
     margin-bottom: 10rem;
 }
 
@@ -478,14 +476,14 @@ body.registration-page {
 
     #search-form input,
     #search-form textarea {
-        width: 10rem;
+        width: 15rem;
         box-sizing: border-box;
         border: 1px solid #7E2A3D;
         border-radius: 0.25rem;
         background-color:#c5b5b97e;
         color: rgb(34, 33, 33);
         height: 2.5rem;
-        margin-left: 25%;
+        margin-left: 5%;
         font-size: 1.3rem;
     }
 

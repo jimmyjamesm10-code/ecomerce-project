@@ -6,40 +6,6 @@ export class OrderInfo {
         this.load();
     }
 
-
-    /*addOrder(order) {
-        const existingOrder = this.customerOrders.find(element => 
-            element.customerInfo.email === order.customerInfo.email
-        )
-
-
-        if (existingOrder) {
-            order.items.forEach(element => {
-                const baseItem = this.baseInventory.find(item => item.id === element.product.id)
-                const existingItem = existingOrder.items.find(item => item.product.id === element.product.id)
-                const existingItemQuantity = existingItem ? existingItem.quantity : 0
-                const remainingStock = baseItem.stock - existingItemQuantity; //baseItem.stock must be the base stock quantity. it shouldn't change. thats where baseInventory comes in.
-                if (element.quantity > remainingStock) {
-                    return;
-                }
-
-                if (existingItem) {
-                    existingItem.quantity += element.quantity
-                } else {
-                    existingOrder.items.push(element)
-                }
-            });
-            existingOrder.total += order.total;
-            console.log(existingOrder) 
-        } else {
-            this.customerOrders.push(order)
-        }
-        this.save();
-    }*/
-
-
-
-
     save() {
         this.customerOrders.forEach(order => {
             //check customer info

@@ -115,7 +115,7 @@ function renderCart() {
         element.textContent = `${item.product.name} - R${item.product.price} x ${item.quantity}`;
 
         const itemImage = document.createElement("img");
-        itemImage.classList = "cart-item-image"
+        itemImage.classList = "cart-item-image";
         itemImage.height = "100";
         itemImage.width = "100";
         itemImage.src = item.product.image;

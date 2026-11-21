@@ -1,11 +1,19 @@
 nav {
     text-align:right;
-    color: rgb(75, 54, 66);
+    color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 1rem;
     padding: 1.5rem 2rem;
-    background-color: rgb(1, 1, 94);
+    background-color: #7E2A3D;
+}
+
+.search-bar {
+    margin-top: 0.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: #C5B5B9;
 }
 
 nav a {
@@ -20,14 +28,14 @@ nav a {
 }
 
 .brandname {
-    color: rgb(252, 224, 243);
+    color: rgb(255, 255, 255);
     font-size: 2rem;
     cursor: pointer;
     display: inline;
 }
 
 body {
-    background-color: rgb(179, 162, 170);
+    background-color: rgb(255, 255, 255, 0.774);
     margin: 0;
 }
 
@@ -43,14 +51,59 @@ body {
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 25%);
 }
 
+.search-form {
+    padding-top: 2.4rem;
+    display: flex;
+    align-items: center;
+    color: transparent;
+    justify-content: center;
+}
+
+#search-form input,
+#search-form textarea {
+    width: 35rem;
+    box-sizing: border-box;
+    border: 1px solid #7E2A3D;
+    border-radius: 0.25rem;
+    background-color:#c5b5b97e;
+    color: rgb(34, 33, 33);
+    height: 2.5rem;
+    margin-left: 25%;
+    font-size: 1.3rem;
+}
+
+#search-form input,
+#search-form textarea::selection {
+    background-color:#c5b5b97e;
+}
+
+.search-button {
+    border-radius: 0.1rem;
+    padding: 0.5rem;
+    background-color:transparent;
+    margin-left: 0.5rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #e2d2d6;
+}
+
 #login-dialog::backdrop {
     background: rgb(0 0 0 / 50%);
 }
 
-#login-form input,
-#login-form textarea {
+#login_form input,
+#login_form textarea {
     box-sizing: border-box;
     width: 100%;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+#login_form {
+    font-size: 1rem;
 }
 
 #close-login {
@@ -66,6 +119,9 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1rem;
     padding: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 10rem;
 }
 
 .product-card {
@@ -103,8 +159,8 @@ body {
 }
 
 .product-details .add-to-cart {
-    border-color: #2563eb;
-    background: #2563eb;
+    border-color:  #7E2A3D;
+    background:  #7E2A3D;
     color: white;
 }
 
@@ -117,7 +173,7 @@ body {
 }
 
 .product-details .add-to-cart:not(:disabled):hover {
-    background: #1d4ed8;
+    background:  #7E2A3D;
 }
 
 .product-details button:disabled {
@@ -163,7 +219,7 @@ body {
 }
 
 .empty-button:focus-visible {
-    outline: 2px solid #2563eb;
+    outline: 2px solid  #7E2A3D;
     outline-offset: 2px;
 }
 
@@ -203,7 +259,7 @@ body {
 }
 
 h1.checkout-title {
-    color: #083472;
+    color:  #3b0713;
 }
 
 h3.checkout-product-name {
@@ -232,13 +288,13 @@ h2.checkout-total {
 
 .paybutton:not(:disabled):hover,
 .checkout-button:hover {
-    border-color: #2563eb;
+    border-color:  #7E2A3D;
     color: white;
     background:#f3f4f6
 }
 
 .checkout-button {
-    background: #2563eb;
+    background:  #7E2A3D;
     padding: 0.5rem;
     border-radius: 0.2rem;
     border-color: black;
@@ -269,7 +325,9 @@ h2.checkout-total {
     cursor: pointer;
 }
 
+#registration_form input,
 #registration_form,
+#login_form input,
 #login_form,
 #checkout-form input,
 #checkout-form textarea {
@@ -313,9 +371,9 @@ body.registration-page {
 #place_order,
 #login,
 #login_form button {
-    background: #2563eb;
+    background:  #7E2A3D;
     padding: 0.5rem 2rem;
-    border: 1px solid #2563eb;
+    border: 1px solid  #7E2A3D;
     border-radius: 0.2rem;
     color: white;
     cursor: pointer;
@@ -326,8 +384,8 @@ body.registration-page {
 #place_order:not(:disabled):hover,
 #login:hover,
 #login_form button:hover {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
+    background:  #631e2e;
+    border-color:  #7E2A3D;
 }
 
 #place_order:disabled {

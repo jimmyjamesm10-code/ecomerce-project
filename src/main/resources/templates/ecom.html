@@ -7,7 +7,15 @@
     </head>
     <body>
         <div th:replace="~{fragments/navbar :: navbar}"></div>
-        <div class = "products">Products</div>
+        <div class="search-bar" aria-label="Search bar">
+            <span>
+                <form id="search-form">
+                    <input type="text">
+                    <button class="search-button" type="submit">Search</button>
+                </form>
+            </span>
+        </div>
+        <div class = "products"></div>
 
         <dialog id="login-dialog" aria-labelledby="login-dialog-title">
             <button type="button" id="close-login" aria-label="Close login">&times;</button>

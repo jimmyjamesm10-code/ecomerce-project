@@ -78,7 +78,7 @@ if (cart.items.length !== 0) {
 }
 
 cart.addEventListener("change", () => {
-    navCartText.style.color = cart.items.length > 0 ? "aqua" : "";
+    navCartText.style.color = cart.items.length > 0 ? "gold" : "";
 })
 
 const cartElement = document.getElementById("cart");

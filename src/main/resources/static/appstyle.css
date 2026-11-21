@@ -1,6 +1,6 @@
 nav {
     text-align:right;
-    color: white;
+    color: rgb(75, 54, 66);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,14 +20,14 @@ nav a {
 }
 
 .brandname {
-    color: rgb(231, 231, 231);
+    color: rgb(252, 224, 243);
     font-size: 2rem;
     cursor: pointer;
     display: inline;
 }
 
 body {
-    background-color: rgb(233, 233, 233);
+    background-color: rgb(179, 162, 170);
     margin: 0;
 }
 

@@ -331,6 +331,7 @@ h2.checkout-total {
 #checkout-form textarea {
     box-sizing: border-box;
     width: 100%;
+    height: 2rem
 }
 
 .request-user-login {
@@ -345,11 +346,12 @@ h2.checkout-total {
     margin-left: 4rem;
 }
 
-.registration_form {
+#registration_form {
     margin-left: 2rem;
+    font-size: 1.5rem
 }
 
-body.registration-page {
+body .registration-page {
     min-height: 100vh;
     display: flex;
     flex-direction: column;

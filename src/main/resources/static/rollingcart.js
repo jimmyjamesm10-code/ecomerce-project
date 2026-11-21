@@ -74,7 +74,7 @@ cart.save();
 //--------------------render fixed cart items--------------------------------------------------
 
 if (cart.items.length !== 0) {
-    navCartText.style.color = "aqua";
+    navCartText.style.color = "gold";
 }
 
 cart.addEventListener("change", () => {

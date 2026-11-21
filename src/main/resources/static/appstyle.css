@@ -476,7 +476,7 @@ body.registration-page {
 
     #search-form input,
     #search-form textarea {
-        width: 15rem;
+        width: 20rem;
         box-sizing: border-box;
         border: 1px solid #7E2A3D;
         border-radius: 0.25rem;
@@ -494,7 +494,6 @@ body.registration-page {
         margin-left: 0.5rem;
         font-size: 1.3rem;
         cursor: pointer;
-        margin-right: 5%;
     }
 
 }

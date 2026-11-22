@@ -85,7 +85,7 @@ function renderProductDetails(product) {
     const increaseButton = container.querySelector(".increase-quantity")
     const totalDisplay = container.querySelector(".total-display");
     const productDetailsImg = container.querySelector(".product-details-image");
-    productDetailsImg.style.cssText = `width: 25rem; 
+    productDetailsImg.style.cssText = `width: 23rem; 
                                        height: 20rem; 
                                        margin-top: 1rem;`
     let quantity = 1;

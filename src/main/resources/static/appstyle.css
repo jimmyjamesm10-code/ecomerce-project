@@ -50,11 +50,11 @@ body {
     padding-bottom: 2rem;
     background-color: #ebdfe2;
     border-bottom: 0.5px solid #4b5563;
-    height: 2rem;
+    height: 1.5rem;
 }
 
 .search-form {
-    padding-top: 2.4rem;
+    padding-top: 1.5rem;
     display: flex;
     align-items: center;
     color: transparent;

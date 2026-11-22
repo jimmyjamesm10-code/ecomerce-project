@@ -29,7 +29,7 @@ nav a {
 
 .brandname {
     color: rgb(255, 255, 255);
-    font-size: 1.5rem;
+    font-size: 2.3rem;
     cursor: pointer;
     display: inline;
 }
@@ -444,6 +444,13 @@ body .registration-page {
         gap: 1rem;
         padding: 1rem;
     }
+
+    .brandname {
+        color: rgb(255, 255, 255);
+        font-size: 1rem;
+        cursor: pointer;
+        display: inline;
+    }  
 
     .mobile-menu-toggle {
         display: block;

@@ -444,7 +444,7 @@ body .registration-page {
     }
 
     .search-bar {
-        padding-top: 2rem;
+        padding-top: 1rem;
         padding-bottom: 2rem;
         background-color: #ebdfe2;
         border-bottom: 0.5px solid #4b5563;
@@ -452,7 +452,6 @@ body .registration-page {
     }
 
     .search-form {
-        padding-top: 2rem;
         display: flex;
         align-items: center;
         color: transparent;

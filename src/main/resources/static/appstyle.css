@@ -124,8 +124,16 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1rem;
     padding: 1rem;
-    margin-bottom: 10rem;
     background-color: #eee3e6;
+    border-bottom: 0.5px solid #4b5563;
+}
+
+.store-footer {
+    padding: 2rem 1rem;
+    background-color: white;
+    color: black;
+    text-align: center;
+    height: 5rem;
     border-bottom: 0.5px solid #4b5563;
 }
 

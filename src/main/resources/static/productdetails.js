@@ -145,6 +145,7 @@ function renderProductDetails(product) {
         renderProductDetails(product)
         AddButton.textContent = "Go To Cart";
         navCartText.style.color = cart.items.length > 0 ? "gold" : "";
+        navCartText.style.cssText = `text-shadow: ${navCartText.style.color}`;
     })
 
     const BackButton = document.querySelector(".back-to-products");

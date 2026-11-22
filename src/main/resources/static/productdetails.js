@@ -132,7 +132,6 @@ function renderProductDetails(product) {
 
     
     AddButton.addEventListener("click", () => {
-        AddButton.textContent = "Go To Cart";
         const currentCartItem = cart.items.find(item => item.product.id === product.id);
         const currentCartQuantity = currentCartItem ? currentCartItem.quantity : 0;
         const remainingStock = product.stock - currentCartQuantity;
@@ -144,6 +143,8 @@ function renderProductDetails(product) {
         cart.addItem(product, quantity);
         console.log(remainingStock)
         renderProductDetails(product)
+        AddButton.textContent = "Go To Cart";
+        navCartText.style.color = cart.items.length > 0 ? "gold" : "";
     })
 
     const BackButton = document.querySelector(".back-to-products");

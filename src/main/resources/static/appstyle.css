@@ -493,7 +493,7 @@ body .registration-page {
         gap: 2rem;
     }
 
-    .mobile-menu-toggle:checked ~ .nav-links {
+    .mobile-menu-toggle:checked ~ .cart-link .nav-links {
         display: flex;
     }
 

@@ -29,7 +29,7 @@ nav a {
 
 body {
     background-color: rgba(255, 255, 255, 0.699);
-    margin: 0;
+    margin-bottom: 10% rgb(240, 234, 234);
 }
 
 .login {

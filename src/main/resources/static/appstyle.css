@@ -49,7 +49,8 @@ body {
     padding-top: 2rem;
     padding-bottom: 2rem;
     background-color: #ebdfe2;
-    border-bottom: 1px solid #4b5563;
+    border-bottom: 0.5px solid #4b5563;
+    height: 2rem;
 }
 
 .search-form {

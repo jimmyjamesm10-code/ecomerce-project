@@ -9,19 +9,19 @@
         <div th:replace="~{fragments/navbar :: navbar}"></div>
 
         <div class="regform-container">
-            <h2>Register</h2>
+            <h2 style="margin-left: 12rem;">Register</h2>
             <form id="registration_form">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" required>
+                <input type="text" style="height: 2.3rem; width: 100%; box-sizing: border-box;" id="name" required>
                 <br><br>
                 <label for="email">Email:</label>
-                <input type="email" id="email" required>
+                <input type="email" style="height: 2.3rem; width: 100%; box-sizing: border-box;" id="email" required>
                 <br></br>
                 <label for="address">Address:</label>
-                <textarea id="address" required></textarea>
+                <textarea id="address" required style="resize: none; height: 4rem; width: 100%; box-sizing: border-box;"></textarea>
                 <br></br>
                 <label for="password">Password:</label>
-                <input type="password" id="password" autocomplete="new-password" required>
+                <input type="password" id="password" style="height: 2.3rem; width: 100%; box-sizing: border-box;" autocomplete="new-password" required>
                 <br></br>
                 <p id="registration-error" class="login-failure" role="alert"></p>
                 <button type="submit" id="register-button">Register</button>

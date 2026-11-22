@@ -9,13 +9,6 @@ nav {
     background-color: #7E2A3D;
 }
 
-.search-bar {
-    margin-top: 0.5rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    background-color: #C5B5B9;
-}
-
 nav a {
     text-decoration: none;
     font-size: 1.5rem;
@@ -50,6 +43,13 @@ body {
     border-radius: 0.5rem;
     padding: 1.5rem;
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 25%);
+}
+
+.search-bar {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: #ebdfe2;
+    border-bottom: 1px solid #4b5563;
 }
 
 .search-form {
@@ -233,8 +233,6 @@ body {
     border-radius: 0.2rem;
     border-width: 0.1rem;
 }
-
-.account-exists
 
 .cartitem-info {
     margin-left: 0.5rem;
@@ -447,7 +445,7 @@ body .registration-page {
 
     .brandname {
         color: rgb(255, 255, 255);
-        font-size: 1rem;
+        font-size: 1.5rem;
         cursor: pointer;
         display: inline;
     }  

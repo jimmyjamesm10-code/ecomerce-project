@@ -18,7 +18,7 @@ nav {
 
 nav a {
     text-decoration: none;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     color: white;
 }
 
@@ -29,7 +29,7 @@ nav a {
 
 .brandname {
     color: rgb(255, 255, 255);
-    font-size: 2rem;
+    font-size: 3rem;
     cursor: pointer;
     display: inline;
 }
@@ -73,9 +73,9 @@ body {
     font-size: 1.3rem;
 }
 
-#search-form input,
-#search-form textarea::selection {
-    background-color:#c5b5b97e;
+#search-form input:focus,
+#search-form textarea:focus {
+    background-color: white;
 }
 
 .search-button {
@@ -103,6 +103,9 @@ body {
     font-size: 1rem;
 }
 
+.nav-cart-text {
+    text-align: right;
+}
 
 #login_form {
     font-size: 1rem;
@@ -231,6 +234,8 @@ body {
     border-width: 0.1rem;
 }
 
+.account-exists
+
 .cartitem-info {
     margin-left: 0.5rem;
 }
@@ -304,7 +309,6 @@ h2.checkout-total {
     padding-right: 2rem;
 }
 
-#login-dialog,
 #checkout-dialog {
     width: min(200vw, 32rem);
     border: 0;
@@ -326,14 +330,15 @@ h2.checkout-total {
 }
 
 #registration_form input,
-#registration_form,
+#registration_form textarea,
 #login_form input,
-#login_form,
+#login_form textarea,
 #checkout-form input,
 #checkout-form textarea {
     box-sizing: border-box;
     width: 100%;
-    height: 2rem
+    height: 2rem;
+    margin-top: 1rem;
 }
 
 #registration_form input,
@@ -350,7 +355,6 @@ h2.checkout-total {
 .account-exists {
     background:#ffffff; 
     border: 0rem;
-    cursor: pointer;
     margin-top: 1rem;
     margin-left: 4rem;
 }
@@ -379,22 +383,40 @@ body .registration-page {
 #register-button,
 #place_order,
 #login,
-#login_form button {
+#login-button {
     background:  #7E2A3D;
     padding: 0.5rem 2rem;
     border: 1px solid  #7E2A3D;
     border-radius: 0.2rem;
     color: white;
     cursor: pointer;
+    font-size: 1.2rem;
 }
 
+.log_in:hover {
+    color: #631e2e;
+}
 
 #register-button:hover,
 #place_order:not(:disabled):hover,
 #login:hover,
-#login_form button:hover {
+#login-button:hover {
     background:  #631e2e;
     border-color:  #7E2A3D;
+}
+
+.register-butt {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.login_form_register {
+    background-color: transparent;
+    border: 0;
+    color: #b91c1c;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 #place_order:disabled {
@@ -407,6 +429,12 @@ body .registration-page {
     display: none;
 }
 
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
 
 @media (max-width: 600px) {

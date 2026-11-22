@@ -150,7 +150,13 @@ function renderProductDetails(product) {
     BackButton.addEventListener("click", () => {
         window.location.href="ecom"
     })
+
 }
+
+const loginFormRegister = document.querySelector(".login_form_register");
+loginFormRegister.addEventListener("click", () => {
+    window.location.href = "registration";
+})
 
 renderProductDetails(productToRender);
 

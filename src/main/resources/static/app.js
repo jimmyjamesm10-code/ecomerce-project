@@ -8,6 +8,10 @@ const loginError = document.getElementById("login-error");
 
 loginNav.addEventListener("click", () => loginDialog.showModal());
 document.getElementById("close-login").addEventListener("click", () => loginDialog.close());
+const loginFormRegister = document.querySelector(".login_form_register");
+loginFormRegister.addEventListener("click", () => {
+    window.location.href = "registration";
+})
 
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();

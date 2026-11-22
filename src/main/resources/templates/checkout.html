@@ -29,7 +29,11 @@
                 <input type="password" id="login-password" autocomplete="current-password" required>
                 <br><br>
                 <p id="login-error" class="login-failure-message" role="alert"></p>
-                <button type="submit">Login</button>
+                <div class="register-butt">
+                    <button id="login-button" type="submit">Login</button>
+                    <p class="login_form_text">Don't have an account?</p>
+                    <button class="login_form_register" type="button">Register</button>
+                </div>
             </form>
         </dialog>
 
@@ -46,7 +50,7 @@
                 <label for="address">Delivery Address:</label>
                 <textarea id="address" required></textarea>
                 <br><br>
-                <button type="submit" id="paybutton">Pay With Card</button>
+                <button type="submit" id="paybutton">Pay Now</button>
             </form>
         </dialog>
 

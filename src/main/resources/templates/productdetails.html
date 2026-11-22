@@ -11,6 +11,7 @@
         <div class = "product-details" style="display: none;"></div>
         <div class ="cart-container"></div>
         <div class="checkout"></div>
+        
         <dialog id="login-dialog" aria-labelledby="login-dialog-title">
             <button type="button" id="close-login" aria-label="Close login">&times;</button>
             <h2 id="login-dialog-title">Login</h2>
@@ -22,7 +23,11 @@
                 <input type="password" id="login-password" autocomplete="current-password" required>
                 <br><br>
                 <p id="login-error" class="login-failure-message" role="alert"></p>
-                <button type="submit">Login</button>
+                <div class="register-butt">
+                    <button id="login-button" type="submit">Login</button>
+                    <p class="login_form_text">Don't have an account?</p>
+                    <button class="login_form_register" type="button">Register</button>
+                </div>
             </form>
         </dialog>
 

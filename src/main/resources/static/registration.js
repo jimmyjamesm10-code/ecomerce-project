@@ -83,10 +83,32 @@ registrationForm.addEventListener("submit", async (event) => {
     }
 })
 
-const accountExists = document.createElement("button")
-accountExists.type = "button"
-accountExists.classList = "account-exists"
-accountExists.textContent = "Already have an account?"
-registrationForm.appendChild(accountExists)
-accountExists.addEventListener("click", () => loginDialog.showModal());
+const log_in_text_container = document.createElement("span");
+const accountExists = document.createElement("button");
+accountExists.type = "button";
+accountExists.classList = "account-exists";
+accountExists.textContent = "Already have an account?";
+accountExists.style.cssText = `font-size: 1rem`;
+log_in_text_container.appendChild(accountExists);
+registrationForm.appendChild(log_in_text_container);
+
+const log_in = document.createElement("button")
+log_in.classList = "log_in"
+log_in.type = "button"
+log_in.textContent = "Login"
+log_in.style.cssText = `
+                        font-size: 1rem;
+                        background-color: transparent;
+                        border: 0;
+                        color: #b91c1c;
+                        cursor: pointer;
+                        `
+log_in_text_container.appendChild(log_in);
+log_in.addEventListener("click", () => loginDialog.showModal());
+
+const loginFormRegister = document.querySelector(".login_form_register");
+loginFormRegister.addEventListener("click", () => {
+    window.location.href = "registration";
+})
+
 

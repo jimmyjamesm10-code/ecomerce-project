@@ -10,6 +10,11 @@ const loginError = document.getElementById("login-error");
 const checkoutContainer = document.querySelector(".checkout-container");
 checkoutContainer.style.cssText = "flex-wrap: wrap; gap: 1rem"
 
+const loginFormRegister = document.querySelector(".login_form_register");
+loginFormRegister.addEventListener("click", () => {
+    window.location.href = "registration";
+})
+
 loginNav.addEventListener("click", () => loginDialog.showModal());
 document.getElementById("close-login").addEventListener("click", () => loginDialog.close());
 

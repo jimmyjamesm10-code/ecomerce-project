@@ -4,6 +4,8 @@ const loginNav = document.querySelector(".login");
 const loginDialog = document.getElementById("login-dialog");
 const loginForm = document.getElementById("login_form");
 const loginError = document.getElementById("login-error");
+const searchForm = document.getElementById("search-form");
+const searchFailureMessage = document.querySelector(".search-failure-message")
 
 
 loginNav.addEventListener("click", () => loginDialog.showModal());
@@ -48,22 +50,48 @@ async function getProducts() {
     return products;
 }
 
+
+searchForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const searchText = document.getElementById("search-product-name").value.trim();
+    
+    try {
+        const searchResponse = await fetch(`/products/getsearchproducts?searchedProduct=${encodeURIComponent(searchText)}`)
+        let searchedProducts = await searchResponse.json();
+
+        if (!searchResponse.ok) {
+            searchFailureMessage.textContent = "Search request failed";
+            console.error(searchResponse.error);
+            return;
+        }
+        searchedProducts = searchedProducts.map(item => 
+            new Product(item.id, item.name, item.price, item.stock, item.category, item.image)
+        )
+
+        if (searchedProducts = []) {
+            searchFailureMessage.textContent = "This item is currently not available";
+        }
+        renderProducts(searchedProducts);
+    } catch {
+        searchFailureMessage.textContent = "search request failed";
+    }
+})
+
 let Products = await getProducts();
 Products = Products.map(item => 
     new Product(item.id, item.name, item.price, item.stock, item.category, item.image)
 )
-console.log(Products);
 
-const products = Products;
-localStorage.setItem("products", JSON.stringify(products));
-console.log(products)
 
-function renderProducts() {
+localStorage.setItem("products", JSON.stringify(Products));
+console.log(Products)
+
+function renderProducts(items) {
     const productsContainer = document.querySelector(".products");
 
     productsContainer.innerHTML = "";
 
-    products.forEach(product => {
+    items.forEach(product => {
 
         const ProductElement = document.createElement("div");
         ProductElement.classList.add("product-card");
@@ -95,7 +123,7 @@ function renderProducts() {
     })
 }
 
-renderProducts()
+renderProducts(Products)
 
 
 

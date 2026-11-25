@@ -2,11 +2,16 @@ package com.ecommerce;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import javax.sql.DataSource;
+
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Repository;
 
 
@@ -117,6 +122,42 @@ public class ProductRepository {
         }
 
         return;
+    }
+
+    public List<Products> getProductsByName(String searchedname) {
+
+        ArrayList<Products> products = new ArrayList<>();
+
+        try (
+            Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("""
+                SELECT products.id, 
+                products.name, 
+                products.price, 
+                products.stock, 
+                products.image, 
+                categories.name AS category_name 
+                FROM products
+                JOIN categories ON products.category_id = categories.id
+                WHERE LOWER(products.name) LIKE ?;                                                               
+                """)
+        ) {
+            preparedStatement.setString(1, "%" + searchedname.toLowerCase(Locale.ROOT) + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                BigDecimal price = resultSet.getBigDecimal("price");
+                int stock = resultSet.getInt("stock");
+                String category = resultSet.getString("category_name");
+                String image = resultSet.getString("image");
+                Products product = new Products(id, name, price, stock, category, image);
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException e) {
+            throw new UncategorizedSQLException("Searching products by name", null, e);
+        }
     }
 
 

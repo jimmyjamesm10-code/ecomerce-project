@@ -49,6 +49,7 @@ body {
     padding-top: 1.5rem;
     padding-bottom: 2rem;
     background-color: #ebdfe2;
+    height: 3rem;
     border-bottom: 0.5px solid #4b5563;
 }
 
@@ -123,6 +124,8 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1rem;
+    min-height: 60vh;
+    box-sizing: border-box;
     padding: 1rem;
     background-color: #eee3e6;
     border-bottom: 0.5px solid #4b5563;

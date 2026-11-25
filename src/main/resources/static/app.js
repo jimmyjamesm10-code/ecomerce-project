@@ -68,8 +68,10 @@ searchForm.addEventListener("submit", async (event) => {
             new Product(item.id, item.name, item.price, item.stock, item.category, item.image)
         )
 
-        if (searchedProducts = []) {
+        if (searchedProducts.length === 0) {
             searchFailureMessage.textContent = "This item is currently not available";
+        } else {
+            searchFailureMessage.textContent = "";
         }
         renderProducts(searchedProducts);
     } catch {

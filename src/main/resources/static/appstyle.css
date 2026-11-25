@@ -120,6 +120,8 @@ body {
     cursor: pointer;
 }
 
+
+
 .products {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -469,6 +471,10 @@ body .registration-page {
         align-items: center;
         color: transparent;
         justify-content: center;
+    }
+
+    .search-failure-message {
+        padding-left: 20%;
     }
 
     .brandname {
